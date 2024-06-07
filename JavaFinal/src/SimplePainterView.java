@@ -1,12 +1,16 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 public class SimplePainterView extends JPanel {
 	
 	private DrawController drawController;
 	
-	private JPanel menuPanel, optionPanel, messagePanel;
-	private JButton[] btnMenuArray;
+	private JPanel 		menuPanel, optionPanel, messagePanel;
+	private JButton[] 	btnMenuArray;
+	private JTextField 	txtSize;
+	private JButton 	btnColorChooser;
+	private JCheckBox 	chkFill;
 	
 	public SimplePainterView()
 	{
@@ -31,6 +35,7 @@ public class SimplePainterView extends JPanel {
 		optionPanel.setBounds(310, 610, 200, 200);
 		optionPanel.setBackground(Color.white);
 		optionPanel.setBorder(BorderFactory.createTitledBorder("OPTION"));
+		optionPanel.setLayout(new GridLayout(3, 1));
 		add(optionPanel);
 		
 		messagePanel = new JPanel();
@@ -45,8 +50,76 @@ public class SimplePainterView extends JPanel {
 			btnMenuArray[i] = new JButton(Constants.MENU[i]);
 			btnMenuArray[i].setBackground(Constants.HOVERING[0]);
 			btnMenuArray[i].setForeground(Constants.HOVERING[1]);
+			btnMenuArray[i].addMouseListener(new HoveringListener());
+			btnMenuArray[i].addActionListener(new MenuListener());
 			menuPanel.add(btnMenuArray[i]);
 		}
+		
+		btnColorChooser = new JButton("COLOR CHOOSER");
+		btnColorChooser.setBackground(Constants.HOVERING[0]);
+		btnColorChooser.setForeground(Constants.HOVERING[1]);
+		btnColorChooser.addMouseListener(new HoveringListener());
+		optionPanel.add(btnColorChooser);
+		
+		txtSize = new JTextField(10);
+		txtSize.setFont(new Font("Verdana", Font.BOLD, 16));
+		txtSize.setVisible(false);
+		optionPanel.add(txtSize);
+		
+		chkFill = new JCheckBox("FILL");
+		chkFill.setBackground(Color.white);
+		chkFill.setFont(new Font("Verdana", Font.BOLD, 16));
+		chkFill.setVisible(false);
+		optionPanel.add(chkFill);
 	}
 	
+	private class HoveringListener implements MouseListener
+	{
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			JButton btnMenu = (JButton)arg0.getSource();
+			btnMenu.setBackground(Constants.HOVERING[2]);
+			btnMenu.setForeground(Constants.HOVERING[3]);
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			JButton btnMenu = (JButton)arg0.getSource();
+			btnMenu.setBackground(Constants.HOVERING[0]);
+			btnMenu.setForeground(Constants.HOVERING[1]);
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {}
+
+		@Override
+		public void mousePressed(MouseEvent e) {}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+	}
+	private class MenuListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Object obj = e.getSource();
+			
+			txtSize.setVisible(true);
+			chkFill.setVisible(false);
+			
+			for(int i = 0; i < 6; i++)
+			{
+				if(obj == btnMenuArray[i])
+				{
+					if(i == Constants.RECT || i == Constants.OVAL)
+					{
+						chkFill.setVisible(true);
+					}
+					break;
+				}
+			}
+		}
+		
+	}
 }
