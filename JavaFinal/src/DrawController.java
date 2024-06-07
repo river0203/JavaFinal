@@ -93,6 +93,16 @@ public class DrawController extends JPanel {
 					}
 					break;
 				case Constants.OVAL:
+					if(view.getChkFill())
+					{
+						page.setColor(data.selectedColor);
+						page.fillOval(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+					}
+					else
+					{
+						page.setColor(data.selectedColor);
+						page.drawOval(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+					}
 					break;
 				
 			}
@@ -112,6 +122,13 @@ public class DrawController extends JPanel {
 				repaint();
 			}
 			else if(nowData.nDrawMode == Constants.RECT)
+			{
+				nowData.ptOne = e.getPoint();
+				nowData.nSize = view.getTextSize();
+				savedList.add(new SimplePainterModel(nowData));
+				repaint();
+			}
+			else if(nowData.nDrawMode == Constants.OVAL)
 			{
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();
