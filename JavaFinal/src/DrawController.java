@@ -31,13 +31,13 @@ public class DrawController extends JPanel {
 	public void setDrawMode(int mode)
 	{
 		nowData.nDrawMode = mode;
-		if(nowData.nDrawMode == Constants.DOT)
+		if(nowData.nDrawMode == Constants.LINE)
 		{
-			view.setTxtsize(10);
+			view.setTxtsize(1);
 		}
 		else
 		{
-			view.setTxtsize(1);
+			view.setTxtsize(10);
 		}
 	}
 	
@@ -81,6 +81,16 @@ public class DrawController extends JPanel {
 					page.drawLine(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
 					break;
 				case Constants.RECT:
+					if(view.getChkFill())
+					{
+						page.setColor(data.selectedColor);
+						page.fillRect(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+					}
+					else
+					{
+						page.setColor(data.selectedColor);
+						page.drawRect(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+					}
 					break;
 				case Constants.OVAL:
 					break;
@@ -95,6 +105,13 @@ public class DrawController extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
 			if(nowData.nDrawMode == Constants.DOT)
+			{
+				nowData.ptOne = e.getPoint();
+				nowData.nSize = view.getTextSize();
+				savedList.add(new SimplePainterModel(nowData));
+				repaint();
+			}
+			else if(nowData.nDrawMode == Constants.RECT)
 			{
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();
