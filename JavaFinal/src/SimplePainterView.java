@@ -18,7 +18,7 @@ public class SimplePainterView extends JPanel {
 		setPreferredSize(new Dimension(820, 830));
 		setLayout(null);
 		
-		drawController = new DrawController();
+		drawController = new DrawController(this);
 		drawController.setBounds(10, 10, 800, 600);
 		drawController.setBorder(BorderFactory.createTitledBorder("DRAWING"));
 		add(drawController);
@@ -59,6 +59,7 @@ public class SimplePainterView extends JPanel {
 		btnColorChooser.setBackground(Constants.HOVERING[0]);
 		btnColorChooser.setForeground(Constants.HOVERING[1]);
 		btnColorChooser.addMouseListener(new HoveringListener());
+		btnColorChooser.addActionListener(new MenuListener());
 		optionPanel.add(btnColorChooser);
 		
 		txtSize = new JTextField(10);
@@ -73,6 +74,10 @@ public class SimplePainterView extends JPanel {
 		optionPanel.add(chkFill);
 	}
 	
+	public void setTxtsize(int size) {txtSize.setText(Integer.toString(size));}
+	public int getTextSize() {return Integer.parseInt(txtSize.getText());}
+	
+	public boolean getChkFill() { return chkFill.isSelected();} 
 	private class HoveringListener implements MouseListener
 	{
 		@Override
@@ -108,10 +113,17 @@ public class SimplePainterView extends JPanel {
 			txtSize.setVisible(true);
 			chkFill.setVisible(false);
 			
+			if(obj == btnColorChooser)
+			{
+				Color c = JColorChooser.showDialog(btnColorChooser, "COLOR CHOOSER", Color.black);
+				drawController.setSelectedColor(c);
+			}
+			
 			for(int i = 0; i < 6; i++)
 			{
 				if(obj == btnMenuArray[i])
 				{
+					drawController.setDrawMode(i);
 					if(i == Constants.RECT || i == Constants.OVAL)
 					{
 						chkFill.setVisible(true);
