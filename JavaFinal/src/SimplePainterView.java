@@ -130,6 +130,7 @@ public class SimplePainterView extends JPanel {
 					}
 					else if(i == Constants.UNDO)
 					{
+						drawController.undoPaintComponent();
 						System.out.print("UNDO");
 					}
 					else if(i == Constants.CLEAR)

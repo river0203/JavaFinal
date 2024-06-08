@@ -108,7 +108,22 @@ public class DrawController extends JPanel {
 			}
 		}
 	}
-
+	
+	public void undoPaintComponent()
+	{
+		int listLen = savedList.size();
+		if(listLen == 0)
+		{
+			System.out.print("Emepty");
+			repaint();
+		}
+		else
+		{
+			savedList.remove(listLen-1);
+			repaint();
+		}
+	}
+	
 	public void clearPaintComponent()
 	{
 		savedList.clear();
