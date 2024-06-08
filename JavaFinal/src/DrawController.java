@@ -108,6 +108,12 @@ public class DrawController extends JPanel {
 			}
 		}
 	}
+
+	public void clearPaintComponent()
+	{
+		savedList.clear();
+		repaint();
+	}
 	
 	private class DrawListener implements MouseListener, MouseMotionListener
 	{
@@ -135,6 +141,7 @@ public class DrawController extends JPanel {
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
+			
 		}
 		
 		@Override
