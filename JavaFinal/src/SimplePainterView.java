@@ -128,6 +128,10 @@ public class SimplePainterView extends JPanel {
 					{
 						chkFill.setVisible(true);
 					}
+					else if(i == Constants.UNDO)
+					{
+						System.out.print("UNDO");
+					}
 					else if(i == Constants.CLEAR)
 					{
 						drawController.clearPaintComponent();
