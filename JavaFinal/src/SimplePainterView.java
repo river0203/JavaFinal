@@ -9,6 +9,7 @@ public class SimplePainterView extends JPanel {
 	private JPanel 		menuPanel, optionPanel, messagePanel;
 	private JButton[] 	btnMenuArray;
 	private JTextField 	txtSize;
+	private JTextField 	messageTxt;
 	private JButton 	btnColorChooser;
 	private JCheckBox 	chkFill;
 	
@@ -43,6 +44,11 @@ public class SimplePainterView extends JPanel {
 		messagePanel.setBackground(Color.white);
 		messagePanel.setBorder(BorderFactory.createTitledBorder("MESSAGE"));
 		add(messagePanel);
+		
+		messageTxt = new JTextField(15);
+		messageTxt.setFont(new Font("Verdana", Font.BOLD, 16));
+		messageTxt.setVisible(true);
+		messagePanel.add(messageTxt);
 		
 		btnMenuArray = new JButton[6];
 		for(int i = 0; i<6; i++)
