@@ -116,25 +116,25 @@ public class DrawController extends JPanel {
 					if(view.getChkFill())
 					{
 						page.setColor(data.selectedColor);
-						page.fillRect(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, nowData.ptTwo.x, nowData.ptTwo.y);
+						page.fillRect(data.ptOne.x, data.ptOne.y, data.ptOne.x, data.ptOne.y);
 						break;
 					}
 					else
 					{
 						page.setColor(data.selectedColor);
-						page.drawRect(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, nowData.ptTwo.x, nowData.ptTwo.y);
+						page.drawRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
 						break;
 					}
 				case Constants.OVAL:
 					if(view.getChkFill())
 					{
 						page.setColor(data.selectedColor);
-						page.fillOval(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+						page.fillOval(data.ptOne.x, data.ptOne.y, data.ptOne.x, data.ptOne.y);
 					}
 					else
 					{
 						page.setColor(data.selectedColor);
-						page.drawOval(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+						page.drawOval(data.ptOne.x, data.ptOne.y, data.ptOne.x, data.ptOne.y);
 					}
 					break;
 				
@@ -169,20 +169,6 @@ public class DrawController extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
 			if(nowData.nDrawMode == Constants.DOT)
-			{
-				nowData.ptOne = e.getPoint();
-				nowData.nSize = view.getTextSize();
-				savedList.add(new SimplePainterModel(nowData));
-				repaint();
-			}
-			else if(nowData.nDrawMode == Constants.RECT)
-			{
-				nowData.ptOne = e.getPoint();
-				nowData.nSize = view.getTextSize();
-				savedList.add(new SimplePainterModel(nowData));
-				repaint();
-			}
-			else if(nowData.nDrawMode == Constants.OVAL)
 			{
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();
