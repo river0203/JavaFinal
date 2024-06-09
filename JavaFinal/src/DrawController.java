@@ -74,14 +74,15 @@ public class DrawController extends JPanel {
 					if(view.getChkFill())
 					{
 						page.setColor(nowData.selectedColor);
-						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+						page.fillRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+						break;
 					}
 					else
 					{
 						page.setColor(nowData.selectedColor);
 						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+						break;
 					}
-					break;
 				case Constants.OVAL:
 					if(view.getChkFill())
 					{
@@ -115,14 +116,15 @@ public class DrawController extends JPanel {
 					if(view.getChkFill())
 					{
 						page.setColor(data.selectedColor);
-						page.fillRect(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+						page.fillRect(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, nowData.ptTwo.x, nowData.ptTwo.y);
+						break;
 					}
 					else
 					{
 						page.setColor(data.selectedColor);
-						page.drawRect(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+						page.drawRect(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, nowData.ptTwo.x, nowData.ptTwo.y);
+						break;
 					}
-					break;
 				case Constants.OVAL:
 					if(view.getChkFill())
 					{
