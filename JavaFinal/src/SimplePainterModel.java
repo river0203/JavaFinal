@@ -4,7 +4,7 @@ import java.awt.Point;
 public class SimplePainterModel {
 
 	public int 		nDrawMode;
-	public Point	 ptOne, ptTwo;
+	public Point	ptOne, ptTwo;
 	public int 		nSize;
 	public boolean 	bFill;
 	public Color 	selectedColor;

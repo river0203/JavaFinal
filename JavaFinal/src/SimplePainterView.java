@@ -4,14 +4,14 @@ import java.awt.event.*;
 
 public class SimplePainterView extends JPanel {
 	
-	private DrawController drawController;
-	
-	private JPanel 		menuPanel, optionPanel, messagePanel;
-	private JButton[] 	btnMenuArray;
-	private JTextField 	txtSize;
-	private JButton 	btnColorChooser;
-	private JCheckBox 	chkFill;
-	private JLabel  	lblMessage;
+	private DrawController 	drawController;
+	private JPanel 			menuPanel, optionPanel, messagePanel;
+	private JButton[] 		btnMenuArray;
+	private JTextField 		txtSize;
+	private JButton 		btnColorChooser;
+	private JCheckBox 		chkFill;	
+	private JLabel  		lblMessage;
+	private String 			strDrawMode;
 	
 	public SimplePainterView()
 	{
@@ -85,8 +85,31 @@ public class SimplePainterView extends JPanel {
 	
 	public void printMessage()
 	{
+		switch(drawController.getDrawMode())
+		{
+		case 0:
+			strDrawMode = "DOT";
+			break;
+		case 1:
+			strDrawMode = "LINE";
+			break;
+		case 2:
+			strDrawMode = "RECT";
+			break;
+		case 3:
+			strDrawMode = "OVAL";
+			break;
+		case 4:
+			strDrawMode = "UNDO";
+			break;
+		case 5:
+			strDrawMode = "CLEAR";
+			break;
+		}
+		lblMessage.setOpaque(true); 
+		lblMessage.setForeground(drawController.getSelectedColor());
 		lblMessage.setText("<html>" +
-				"Draw Mode" + "<br>" + drawController.getDrawMode() + "<br><br>"
+				"Draw Mode" + "<br>" + strDrawMode + "<br><br>"
 				+"Color" + "<br>" +drawController.getSelectedColor() + "<br><br>"
 				+"Size" + "<br>" +getTextSize() + "<br><br>"
 				+"Present Position" + "<br>" +drawController.getPresentPosition()

@@ -28,7 +28,7 @@ public class DrawController extends JPanel {
 		bDrag = false;
 	}
 	
-	public int getDrawMode()
+	public int getDrawMode() 
 	{
 		return nowData.nDrawMode;
 	}
@@ -39,25 +39,29 @@ public class DrawController extends JPanel {
 		{
 			view.setTxtsize(10);
 		}
+		else if(nowData.nDrawMode == Constants.ERASER)
+		{
+			view.setTxtsize(20);
+		}
 		else
 		{
 			view.setTxtsize(1);
 		}
 	}
-	public Point getPresentPosition()
+	public Point getPresentPosition() 
 	{
 		return nowData.ptOne;
 	}
-	public String getSelectedColor()
+	public Color getSelectedColor() 
 	{
-		return nowData.selectedColor.toString();
+		return nowData.selectedColor;
 	}
-	public void setSelectedColor(Color color)
+	public void setSelectedColor(Color color) 
 	{
 		nowData.selectedColor = color;
 	}
 	
-	public void paintComponent(Graphics page)
+	public void paintComponent(Graphics page) 
 	{
 		super.paintComponent(page);
 		
@@ -76,28 +80,32 @@ public class DrawController extends JPanel {
 						nowData.bFill = view.getChkFill();
 						page.setColor(nowData.selectedColor);
 						page.fillRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
-						break;
 					}
 					else
 					{
 						page.setColor(nowData.selectedColor);
 						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
-						break;
 					}
+					break;
 				case Constants.OVAL:
 					if(view.getChkFill())
 					{
 						nowData.bFill = view.getChkFill();
 						page.setColor(nowData.selectedColor);
 						page.fillOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);;
-						break;
 					}
 					else
 					{
 						page.setColor(nowData.selectedColor);
 						page.drawOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
-						break;
 					}
+					break;
+				case Constants.ERASER:
+					page.setColor(Color.white);
+					Graphics2D page3 = (Graphics2D) page;
+					page3.setStroke(new BasicStroke(nowData.nSize));
+					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					break;
 				
 			}
 		}
@@ -141,12 +149,18 @@ public class DrawController extends JPanel {
 						page.drawOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 					}
 					break;
+				case Constants.ERASER:
+					page.setColor(Color.white);
+					Graphics2D page3 = (Graphics2D) page;
+					page3.setStroke(new BasicStroke(nowData.nSize));
+					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					break;
 				
 			}
 		}
 	}
 	
-	public void undoPaintComponent()
+	public void undoPaintComponent() 
 	{
 		int listLen = savedList.size();
 		if(listLen == 0)
@@ -160,8 +174,7 @@ public class DrawController extends JPanel {
 			repaint();
 		}
 	}
-	
-	public void clearPaintComponent()
+	public void clearPaintComponent() 
 	{
 		savedList.clear();
 		repaint();
@@ -207,6 +220,14 @@ public class DrawController extends JPanel {
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();
 			}
+			else if(nowData.nDrawMode == Constants.ERASER)
+			{
+				bDrag = true;
+				
+				nowData.ptOne = e.getPoint();
+				nowData.nSize = view.getTextSize();
+			}
+			
 		}
 
 		@Override
@@ -236,6 +257,14 @@ public class DrawController extends JPanel {
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
+			else if(nowData.nDrawMode == Constants.ERASER)
+			{
+				bDrag = false;
+				
+				nowData.ptTwo = e.getPoint();
+				savedList.add(new SimplePainterModel(nowData));
+				repaint();
+			}
 			
 			view.printMessage();
 		}
@@ -254,6 +283,11 @@ public class DrawController extends JPanel {
 				repaint();
 			}
 			else if(nowData.nDrawMode == Constants.OVAL)
+			{
+				nowData.ptTwo = e.getPoint();
+				repaint();
+			}
+			else if(nowData.nDrawMode == Constants.ERASER)
 			{
 				nowData.ptTwo = e.getPoint();
 				repaint();

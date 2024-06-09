@@ -15,5 +15,6 @@ public class Constants {
 	static final public int OVAL 	= 3;
 	static final public int UNDO	= 4;
 	static final public int CLEAR	= 5;
-	static final public int NONE 	= 6;
+	static final public int ERASER	= 6;
+	static final public int NONE 	= 7;
 }
