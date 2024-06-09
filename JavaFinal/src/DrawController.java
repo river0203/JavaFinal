@@ -35,13 +35,13 @@ public class DrawController extends JPanel {
 	public void setDrawMode(int mode)
 	{
 		nowData.nDrawMode = mode;
-		if(nowData.nDrawMode == Constants.LINE)
+		if(nowData.nDrawMode == Constants.DOT)
 		{
-			view.setTxtsize(1);
+			view.setTxtsize(10);
 		}
 		else
 		{
-			view.setTxtsize(10);
+			view.setTxtsize(1);
 		}
 	}
 	public Point getPresentPosition()
@@ -73,28 +73,31 @@ public class DrawController extends JPanel {
 				case Constants.RECT:
 					if(view.getChkFill())
 					{
+						nowData.bFill = view.getChkFill();
 						page.setColor(nowData.selectedColor);
-						page.fillRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+						page.fillRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
 						break;
 					}
 					else
 					{
 						page.setColor(nowData.selectedColor);
-						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
 						break;
 					}
 				case Constants.OVAL:
 					if(view.getChkFill())
 					{
+						nowData.bFill = view.getChkFill();
 						page.setColor(nowData.selectedColor);
-						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+						page.fillOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);;
+						break;
 					}
 					else
 					{
 						page.setColor(nowData.selectedColor);
-						page.drawOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+						page.drawOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
+						break;
 					}
-					break;
 				
 			}
 		}
@@ -113,28 +116,29 @@ public class DrawController extends JPanel {
 					page.drawLine(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
 					break;
 				case Constants.RECT:
-					if(view.getChkFill())
+					if(data.bFill == true)
 					{
+						nowData.bFill = view.getChkFill();
 						page.setColor(data.selectedColor);
-						page.fillRect(data.ptOne.x, data.ptOne.y, data.ptOne.x, data.ptOne.y);
-						break;
+						page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 					}
 					else
 					{
 						page.setColor(data.selectedColor);
-						page.drawRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
-						break;
+						page.drawRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 					}
+					break;
 				case Constants.OVAL:
-					if(view.getChkFill())
+					if(data.bFill == true)
 					{
+						nowData.bFill = view.getChkFill();
 						page.setColor(data.selectedColor);
-						page.fillOval(data.ptOne.x, data.ptOne.y, data.ptOne.x, data.ptOne.y);
+						page.fillOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 					}
 					else
 					{
 						page.setColor(data.selectedColor);
-						page.drawOval(data.ptOne.x, data.ptOne.y, data.ptOne.x, data.ptOne.y);
+						page.drawOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 					}
 					break;
 				
