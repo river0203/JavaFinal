@@ -71,8 +71,28 @@ public class DrawController extends JPanel {
 					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
 					break;
 				case Constants.RECT:
+					if(view.getChkFill())
+					{
+						page.setColor(nowData.selectedColor);
+						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					}
+					else
+					{
+						page.setColor(nowData.selectedColor);
+						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					}
 					break;
 				case Constants.OVAL:
+					if(view.getChkFill())
+					{
+						page.setColor(nowData.selectedColor);
+						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					}
+					else
+					{
+						page.setColor(nowData.selectedColor);
+						page.drawOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					}
 					break;
 				
 			}
@@ -181,6 +201,20 @@ public class DrawController extends JPanel {
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();		
 			}
+			else if(nowData.nDrawMode == Constants.RECT)
+			{
+				bDrag = true;
+				
+				nowData.ptOne = e.getPoint();
+				nowData.nSize = view.getTextSize();
+			}
+			else if(nowData.nDrawMode == Constants.OVAL)
+			{
+				bDrag = true;
+				
+				nowData.ptOne = e.getPoint();
+				nowData.nSize = view.getTextSize();
+			}
 		}
 
 		@Override
@@ -194,6 +228,23 @@ public class DrawController extends JPanel {
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
+			else if(nowData.nDrawMode == Constants.RECT)
+			{
+				bDrag = false;
+				
+				nowData.ptTwo = e.getPoint();
+				savedList.add(new SimplePainterModel(nowData));
+				repaint();
+			}
+			else if(nowData.nDrawMode == Constants.OVAL)
+			{
+				bDrag = false;
+				
+				nowData.ptTwo = e.getPoint();
+				savedList.add(new SimplePainterModel(nowData));
+				repaint();
+			}
+			
 			view.printMessage();
 		}
 
@@ -201,6 +252,16 @@ public class DrawController extends JPanel {
 		public void mouseDragged(MouseEvent e) {
 			// TODO Auto-generated method stub
 			if(nowData.nDrawMode == Constants.LINE)
+			{
+				nowData.ptTwo = e.getPoint();
+				repaint();
+			}
+			else if(nowData.nDrawMode == Constants.RECT)
+			{
+				nowData.ptTwo = e.getPoint();
+				repaint();
+			}
+			else if(nowData.nDrawMode == Constants.OVAL)
 			{
 				nowData.ptTwo = e.getPoint();
 				repaint();
