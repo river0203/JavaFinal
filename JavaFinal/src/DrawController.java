@@ -28,6 +28,10 @@ public class DrawController extends JPanel {
 		bDrag = false;
 	}
 	
+	public int getDrawMode()
+	{
+		return nowData.nDrawMode;
+	}
 	public void setDrawMode(int mode)
 	{
 		nowData.nDrawMode = mode;
@@ -40,7 +44,14 @@ public class DrawController extends JPanel {
 			view.setTxtsize(10);
 		}
 	}
-	
+	public Point getPresentPosition()
+	{
+		return nowData.ptOne;
+	}
+	public String getSelectedColor()
+	{
+		return nowData.selectedColor.toString();
+	}
 	public void setSelectedColor(Color color)
 	{
 		nowData.selectedColor = color;
@@ -156,6 +167,7 @@ public class DrawController extends JPanel {
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
+			view.printMessage();
 			
 		}
 		
@@ -167,7 +179,8 @@ public class DrawController extends JPanel {
 				bDrag = true;
 				
 				nowData.ptOne = e.getPoint();
-				nowData.nSize = view.getTextSize();		}
+				nowData.nSize = view.getTextSize();		
+			}
 		}
 
 		@Override
@@ -181,6 +194,7 @@ public class DrawController extends JPanel {
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
+			view.printMessage();
 		}
 
 		@Override
@@ -191,6 +205,7 @@ public class DrawController extends JPanel {
 				nowData.ptTwo = e.getPoint();
 				repaint();
 			}
+			view.printMessage();
 		}
 
 		@Override

@@ -9,9 +9,9 @@ public class SimplePainterView extends JPanel {
 	private JPanel 		menuPanel, optionPanel, messagePanel;
 	private JButton[] 	btnMenuArray;
 	private JTextField 	txtSize;
-	private JTextField 	messageTxt;
 	private JButton 	btnColorChooser;
 	private JCheckBox 	chkFill;
+	private JLabel  	lblMessage;
 	
 	public SimplePainterView()
 	{
@@ -25,7 +25,7 @@ public class SimplePainterView extends JPanel {
 		add(drawController);
 		
 		menuPanel = new JPanel();
-		menuPanel.setBounds(10, 610, 300, 200);
+		menuPanel.setBounds(10, 610, 300, 210);
 		menuPanel.setBackground(Color.white);
 		menuPanel.setBorder(BorderFactory.createTitledBorder("MENU"));
 		menuPanel.setLayout(new GridLayout(2, 3));
@@ -33,22 +33,21 @@ public class SimplePainterView extends JPanel {
 		
 		
 		optionPanel = new JPanel();
-		optionPanel.setBounds(310, 610, 200, 200);
+		optionPanel.setBounds(310, 610, 200, 210);
 		optionPanel.setBackground(Color.white);
 		optionPanel.setBorder(BorderFactory.createTitledBorder("OPTION"));
 		optionPanel.setLayout(new GridLayout(3, 1));
 		add(optionPanel);
 		
 		messagePanel = new JPanel();
-		messagePanel.setBounds(510, 610, 300, 200);
+		messagePanel.setBounds(510, 610, 300, 210);
 		messagePanel.setBackground(Color.white);
 		messagePanel.setBorder(BorderFactory.createTitledBorder("MESSAGE"));
 		add(messagePanel);
 		
-		messageTxt = new JTextField(15);
-		messageTxt.setFont(new Font("Verdana", Font.BOLD, 16));
-		messageTxt.setVisible(true);
-		messagePanel.add(messageTxt);
+		lblMessage = new JLabel();
+		messagePanel.add(lblMessage);
+		
 		
 		btnMenuArray = new JButton[6];
 		for(int i = 0; i<6; i++)
@@ -82,8 +81,18 @@ public class SimplePainterView extends JPanel {
 	
 	public void setTxtsize(int size) {txtSize.setText(Integer.toString(size));}
 	public int getTextSize() {return Integer.parseInt(txtSize.getText());}
-	
 	public boolean getChkFill() { return chkFill.isSelected();} 
+	
+	public void printMessage()
+	{
+		lblMessage.setText("<html>" +
+				"Draw Mode" + "<br>" + drawController.getDrawMode() + "<br><br>"
+				+"Color" + "<br>" +drawController.getSelectedColor() + "<br><br>"
+				+"Size" + "<br>" +getTextSize() + "<br><br>"
+				+"Present Position" + "<br>" +drawController.getPresentPosition()
+				+"<html>");
+	}
+	
 	private class HoveringListener implements MouseListener
 	{
 		@Override
