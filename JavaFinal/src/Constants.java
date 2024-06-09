@@ -2,7 +2,7 @@ import java.awt.Color;
 
 public class Constants {
 	static final public String MENU[] = {
-			"DOT", "LINE", "RECT", "OVAL", "UNDO", "CLEAR"
+			"DOT", "LINE", "RECT", "OVAL", "UNDO", "CLEAR", "ERASER"
 	};
 	
 	static final public Color HOVERING[] = {

@@ -35,13 +35,9 @@ public class DrawController extends JPanel {
 	public void setDrawMode(int mode)
 	{
 		nowData.nDrawMode = mode;
-		if(nowData.nDrawMode == Constants.DOT)
+		if(nowData.nDrawMode == Constants.DOT || nowData.nDrawMode == Constants.ERASER)
 		{
 			view.setTxtsize(10);
-		}
-		else if(nowData.nDrawMode == Constants.ERASER)
-		{
-			view.setTxtsize(20);
 		}
 		else
 		{
@@ -74,6 +70,10 @@ public class DrawController extends JPanel {
 					page2.setStroke(new BasicStroke(nowData.nSize));
 					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
 					break;
+				case Constants.ERASER:
+					page.setColor(Color.white);
+					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					break;
 				case Constants.RECT:
 					if(view.getChkFill())
 					{
@@ -100,13 +100,6 @@ public class DrawController extends JPanel {
 						page.drawOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
 					}
 					break;
-				case Constants.ERASER:
-					page.setColor(Color.white);
-					Graphics2D page3 = (Graphics2D) page;
-					page3.setStroke(new BasicStroke(nowData.nSize));
-					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
-					break;
-				
 			}
 		}
 		
@@ -121,6 +114,10 @@ public class DrawController extends JPanel {
 					page.setColor(data.selectedColor);
 					Graphics2D page2 = (Graphics2D) page;
 					page2.setStroke(new BasicStroke(data.nSize));
+					page.drawLine(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
+					break;
+				case Constants.ERASER:
+					page.setColor(Color.white);
 					page.drawLine(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
 					break;
 				case Constants.RECT:
@@ -149,13 +146,6 @@ public class DrawController extends JPanel {
 						page.drawOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 					}
 					break;
-				case Constants.ERASER:
-					page.setColor(Color.white);
-					Graphics2D page3 = (Graphics2D) page;
-					page3.setStroke(new BasicStroke(nowData.nSize));
-					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
-					break;
-				
 			}
 		}
 	}

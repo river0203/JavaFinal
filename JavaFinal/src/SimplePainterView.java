@@ -49,8 +49,8 @@ public class SimplePainterView extends JPanel {
 		messagePanel.add(lblMessage);
 		
 		
-		btnMenuArray = new JButton[6];
-		for(int i = 0; i<6; i++)
+		btnMenuArray = new JButton[7];
+		for(int i = 0; i<7; i++)
 		{
 			btnMenuArray[i] = new JButton(Constants.MENU[i]);
 			btnMenuArray[i].setBackground(Constants.HOVERING[0]);
@@ -105,6 +105,9 @@ public class SimplePainterView extends JPanel {
 		case 5:
 			strDrawMode = "CLEAR";
 			break;
+		case 6:
+			strDrawMode = "ERASER";
+			break;
 		}
 		lblMessage.setOpaque(true); 
 		lblMessage.setForeground(drawController.getSelectedColor());
@@ -157,7 +160,7 @@ public class SimplePainterView extends JPanel {
 				drawController.setSelectedColor(c);
 			}
 			
-			for(int i = 0; i < 6; i++)
+			for(int i = 0; i < 7; i++)
 			{
 				if(obj == btnMenuArray[i])
 				{
