@@ -5,7 +5,6 @@ import java.awt.event.*;
 public class SimplePainterView extends JPanel {
 	
 	private DrawController drawController;
-	
 	private JPanel 		menuPanel, optionPanel, messagePanel;
 	private JButton[] 	btnMenuArray;
 	private JTextField 	txtSize;
