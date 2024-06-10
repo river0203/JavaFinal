@@ -109,6 +109,7 @@ public class SimplePainterView extends JPanel {
 			strDrawMode = "ERASER";
 			break;
 		}
+		
 		lblMessage.setOpaque(true); 
 		lblMessage.setForeground(drawController.getSelectedColor());
 		lblMessage.setText("<html>" +
