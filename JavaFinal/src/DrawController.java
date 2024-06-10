@@ -72,9 +72,13 @@ public class DrawController extends JPanel {
 					break;
 				case Constants.ERASER:
 					page.setColor(Color.white);
+					Graphics2D page3 = (Graphics2D) page;
+					page3.setStroke(new BasicStroke(nowData.nSize));
 					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
 					break;
 				case Constants.RECT:
+					Graphics2D page4 = (Graphics2D) page;
+					page4.setStroke(new BasicStroke(nowData.nSize));
 					if(view.getChkFill())
 					{
 						nowData.bFill = view.getChkFill();
@@ -88,6 +92,8 @@ public class DrawController extends JPanel {
 					}
 					break;
 				case Constants.OVAL:
+					Graphics2D page5 = (Graphics2D) page;
+					page5.setStroke(new BasicStroke(nowData.nSize));
 					if(view.getChkFill())
 					{
 						nowData.bFill = view.getChkFill();
@@ -118,9 +124,13 @@ public class DrawController extends JPanel {
 					break;
 				case Constants.ERASER:
 					page.setColor(Color.white);
+					Graphics2D page3 = (Graphics2D) page;
+					page3.setStroke(new BasicStroke(data.nSize));
 					page.drawLine(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
 					break;
 				case Constants.RECT:
+					Graphics2D page4 = (Graphics2D) page;
+					page4.setStroke(new BasicStroke(data.nSize));
 					if(data.bFill == true)
 					{
 						nowData.bFill = view.getChkFill();
@@ -134,6 +144,8 @@ public class DrawController extends JPanel {
 					}
 					break;
 				case Constants.OVAL:
+					Graphics2D page5 = (Graphics2D) page;
+					page5.setStroke(new BasicStroke(data.nSize));
 					if(data.bFill == true)
 					{
 						nowData.bFill = view.getChkFill();
