@@ -11,6 +11,8 @@ public class DrawController extends JPanel {
 	private SimplePainterView view;
 	private boolean bDrag;
 	
+	private SimplePainterManager painterManager = SimplePainterManager.getInstance();
+	
 	public DrawController(SimplePainterView v)
 	{
 		view = v;
