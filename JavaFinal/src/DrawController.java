@@ -23,7 +23,8 @@ public class DrawController extends JPanel {
 		addMouseListener(drawL);
 		addMouseMotionListener(drawL);
 		
-		nowData = new SimplePainterModel();
+		nowData = painterManager.getPainterModel();
+		//
 		savedList = new ArrayList<SimplePainterModel>();
 		
 		nowData.nDrawMode = Constants.NONE;
