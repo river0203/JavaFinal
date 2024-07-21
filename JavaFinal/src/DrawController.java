@@ -9,6 +9,8 @@ public class DrawController extends JPanel {
 	private ArrayList<SimplePainterModel> savedList;
 	private DrawListener drawL;
 	private SimplePainterView view;
+	private DrawMode nDrawMode;
+	
 	private boolean bDrag;
 	
 	public DrawController(SimplePainterView v)
@@ -65,10 +67,8 @@ public class DrawController extends JPanel {
 		{
 			switch(nowData.nDrawMode) {
 				case Constants.LINE:
-					page.setColor(nowData.selectedColor);
-					Graphics2D page2 = (Graphics2D) page;
-					page2.setStroke(new BasicStroke(nowData.nSize));
-					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					nDrawMode = new Line();
+					nDrawMode.DrawFigure(nowData, page);
 					break;
 				case Constants.ERASER:
 					page.setColor(Color.white);
@@ -113,14 +113,12 @@ public class DrawController extends JPanel {
 		{
 			switch(data.nDrawMode) {
 				case Constants.DOT:
-					page.setColor(data.selectedColor);
-					page.fillOval(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
+					nDrawMode = new Dot();
+					nDrawMode.DrawFigure(data, page);
 					break;
 				case Constants.LINE:
-					page.setColor(data.selectedColor);
-					Graphics2D page2 = (Graphics2D) page;
-					page2.setStroke(new BasicStroke(data.nSize));
-					page.drawLine(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
+					nDrawMode = new Line();
+					nDrawMode.DrawFigure(data, page);
 					break;
 				case Constants.ERASER:
 					page.setColor(Color.white);
