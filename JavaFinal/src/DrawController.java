@@ -79,31 +79,29 @@ public class DrawController extends JPanel {
 				case Constants.RECT:
 					Graphics2D page4 = (Graphics2D) page;
 					page4.setStroke(new BasicStroke(nowData.nSize));
+					nDrawMode = new Rect();
 					if(view.getChkFill())
 					{
 						nowData.bFill = view.getChkFill();
-						page.setColor(nowData.selectedColor);
-						page.fillRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
+						nDrawMode.DrawFigure(nowData, page4);
 					}
 					else
 					{
-						page.setColor(nowData.selectedColor);
-						page.drawRect(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
+						nDrawMode.DrawFigure(nowData, page4);
 					}
 					break;
 				case Constants.OVAL:
 					Graphics2D page5 = (Graphics2D) page;
 					page5.setStroke(new BasicStroke(nowData.nSize));
+					nDrawMode = new Oval();
 					if(view.getChkFill())
 					{
 						nowData.bFill = view.getChkFill();
-						page.setColor(nowData.selectedColor);
-						page.fillOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);;
+						nDrawMode.DrawFigure(nowData, page5);
 					}
 					else
 					{
-						page.setColor(nowData.selectedColor);
-						page.drawOval(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x - nowData.ptOne.x, nowData.ptTwo.y - nowData.ptOne.y);
+						nDrawMode.DrawFigure(nowData, page5);
 					}
 					break;
 			}
@@ -129,11 +127,11 @@ public class DrawController extends JPanel {
 				case Constants.RECT:
 					Graphics2D page4 = (Graphics2D) page;
 					page4.setStroke(new BasicStroke(data.nSize));
+					nDrawMode = new Rect();
 					if(data.bFill == true)
 					{
 						nowData.bFill = view.getChkFill();
-						page.setColor(data.selectedColor);
-						page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
+						nDrawMode.DrawFigure(nowData, page4);
 					}
 					else
 					{

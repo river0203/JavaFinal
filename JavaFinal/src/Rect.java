@@ -7,9 +7,9 @@ public class Rect extends DrawMode{
 	@Override
 	public void DrawFigure(SimplePainterModel data, Graphics page) {
 		// TODO Auto-generated method stub
-		
+		page.setColor(data.selectedColor);
+		page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 	}
 	
 }
-
 	
