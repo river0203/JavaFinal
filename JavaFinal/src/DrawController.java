@@ -87,15 +87,8 @@ public class DrawController extends JPanel {
 					Graphics2D page5 = (Graphics2D) page;
 					page5.setStroke(new BasicStroke(nowData.nSize));
 					nDrawMode = new Oval();
-					if(view.getChkFill())
-					{
-						nowData.bFill = view.getChkFill();
-						nDrawMode.DrawFigure(nowData, page5);
-					}
-					else
-					{
-						nDrawMode.DrawFigure(nowData, page5);
-					}
+					nowData.bFill = view.getChkFill();
+					nDrawMode.DrawFigure(nowData, page5);
 					break;
 			}
 		}
@@ -121,32 +114,15 @@ public class DrawController extends JPanel {
 					Graphics2D page4 = (Graphics2D) page;
 					page4.setStroke(new BasicStroke(data.nSize));
 					nDrawMode = new Rect();
-					if(data.bFill == true)
-					{
-						nowData.bFill = view.getChkFill();
-						page.setColor(data.selectedColor);
-						page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
-					}
-					else
-					{
-						page.setColor(data.selectedColor);
-						page.drawRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
-					}
+					nowData.bFill = view.getChkFill();
+					nDrawMode.DrawFigure(data, page);
 					break;
 				case Constants.OVAL:
 					Graphics2D page5 = (Graphics2D) page;
 					page5.setStroke(new BasicStroke(data.nSize));
-					if(data.bFill == true)
-					{
-						nowData.bFill = view.getChkFill();
-						page.setColor(data.selectedColor);
-						page.fillOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
-					}
-					else
-					{
-						page.setColor(data.selectedColor);
-						page.drawOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
-					}
+					nDrawMode = new Oval();
+					nowData.bFill = view.getChkFill();
+					nDrawMode.DrawFigure(data, page);
 					break;
 			}
 		}
