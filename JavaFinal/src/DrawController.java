@@ -74,7 +74,8 @@ public class DrawController extends JPanel {
 					page.setColor(Color.white);
 					Graphics2D page3 = (Graphics2D) page;
 					page3.setStroke(new BasicStroke(nowData.nSize));
-					page.drawLine(nowData.ptOne.x, nowData.ptOne.y, nowData.ptTwo.x, nowData.ptTwo.y);
+					nDrawMode = new Eraser();
+					nDrawMode.DrawFigure(nowData, page);
 					break;
 				case Constants.RECT:
 					Graphics2D page4 = (Graphics2D) page;
@@ -108,7 +109,8 @@ public class DrawController extends JPanel {
 					page.setColor(Color.white);
 					Graphics2D page3 = (Graphics2D) page;
 					page3.setStroke(new BasicStroke(data.nSize));
-					page.drawLine(data.ptOne.x, data.ptOne.y, data.ptTwo.x, data.ptTwo.y);
+					nDrawMode = new Eraser();
+					nDrawMode.DrawFigure(data, page);
 					break;
 				case Constants.RECT:
 					Graphics2D page4 = (Graphics2D) page;
