@@ -8,7 +8,15 @@ public class Rect extends DrawMode{
 	public void DrawFigure(SimplePainterModel data, Graphics page) {
 		// TODO Auto-generated method stub
 		page.setColor(data.selectedColor);
-		page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
+		
+		if(data.bFill == true)
+		{
+			page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
+		}
+		else
+		{
+			page.drawRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
+		}
 	}
 	
 }

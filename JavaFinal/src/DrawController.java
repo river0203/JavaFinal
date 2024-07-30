@@ -80,15 +80,8 @@ public class DrawController extends JPanel {
 					Graphics2D page4 = (Graphics2D) page;
 					page4.setStroke(new BasicStroke(nowData.nSize));
 					nDrawMode = new Rect();
-					if(view.getChkFill())
-					{
-						nowData.bFill = view.getChkFill();
-						nDrawMode.DrawFigure(nowData, page4);
-					}
-					else
-					{
-						nDrawMode.DrawFigure(nowData, page4);
-					}
+					nowData.bFill = view.getChkFill();
+					nDrawMode.DrawFigure(nowData, page4);
 					break;
 				case Constants.OVAL:
 					Graphics2D page5 = (Graphics2D) page;
@@ -131,7 +124,8 @@ public class DrawController extends JPanel {
 					if(data.bFill == true)
 					{
 						nowData.bFill = view.getChkFill();
-						nDrawMode.DrawFigure(nowData, page4);
+						page.setColor(data.selectedColor);
+						page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 					}
 					else
 					{
