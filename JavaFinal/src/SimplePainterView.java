@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 public class SimplePainterView extends JPanel {
 	
+	private SimplePainterManager painterManager = SimplePainterManager.getInstance();
 	private DrawController 	drawController;
 	private JPanel 			menuPanel, optionPanel, messagePanel;
 	private JButton[] 		btnMenuArray;
@@ -19,7 +20,7 @@ public class SimplePainterView extends JPanel {
 		setPreferredSize(new Dimension(820, 830));
 		setLayout(null);
 		
-		drawController = new DrawController(this);
+		drawController = painterManager.getPainterController(this);
 		drawController.setBounds(10, 10, 800, 600);
 		drawController.setBorder(BorderFactory.createTitledBorder("DRAWING"));
 		add(drawController);

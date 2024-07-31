@@ -13,6 +13,8 @@ public class DrawController extends JPanel {
 	
 	private boolean bDrag;
 	
+	private SimplePainterManager painterManager = SimplePainterManager.getInstance();
+	
 	public DrawController(SimplePainterView v)
 	{
 		view = v;
@@ -23,7 +25,8 @@ public class DrawController extends JPanel {
 		addMouseListener(drawL);
 		addMouseMotionListener(drawL);
 		
-		nowData = new SimplePainterModel();
+		nowData = painterManager.getPainterModel();
+		//
 		savedList = new ArrayList<SimplePainterModel>();
 		
 		nowData.nDrawMode = Constants.NONE;
