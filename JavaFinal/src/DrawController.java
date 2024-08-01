@@ -26,7 +26,7 @@ public class DrawController extends JPanel {
 		addMouseMotionListener(drawL);
 		
 		nowData = painterManager.getPainterModel();
-		//
+		//can't change singletone
 		savedList = new ArrayList<SimplePainterModel>();
 		
 		nowData.nDrawMode = Constants.NONE;
