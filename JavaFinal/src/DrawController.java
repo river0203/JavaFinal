@@ -73,7 +73,7 @@ public class DrawController extends JPanel {
 		{
 			switch(nowData.nDrawMode) {
 				case Constants.LINE:
-					nDrawMode = painterManager.getDot();
+					nDrawMode = painterManager.getLine();
 					nDrawMode.DrawFigure(nowData, page);
 					break;
 				case Constants.ERASER:
@@ -104,31 +104,31 @@ public class DrawController extends JPanel {
 		{
 			switch(data.nDrawMode) {
 				case Constants.DOT:
-					nDrawMode = new Dot();
+					nDrawMode = painterManager.getDot();
 					nDrawMode.DrawFigure(data, page);
 					break;
 				case Constants.LINE:
-					nDrawMode = new Line();
+					nDrawMode = painterManager.getLine();
 					nDrawMode.DrawFigure(data, page);
 					break;
 				case Constants.ERASER:
 					page.setColor(Color.white);
 					Graphics2D page3 = (Graphics2D) page;
 					page3.setStroke(new BasicStroke(data.nSize));
-					nDrawMode = new Eraser();
+					nDrawMode = painterManager.getEraser();
 					nDrawMode.DrawFigure(data, page);
 					break;
 				case Constants.RECT:
 					Graphics2D page4 = (Graphics2D) page;
 					page4.setStroke(new BasicStroke(data.nSize));
-					nDrawMode = new Rect();
+					nDrawMode = painterManager.getRect();
 					nowData.bFill = view.getChkFill();
 					nDrawMode.DrawFigure(data, page);
 					break;
 				case Constants.OVAL:
 					Graphics2D page5 = (Graphics2D) page;
 					page5.setStroke(new BasicStroke(data.nSize));
-					nDrawMode = new Oval();
+					nDrawMode = painterManager.getOval();
 					nowData.bFill = view.getChkFill();
 					nDrawMode.DrawFigure(data, page);
 					break;
