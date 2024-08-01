@@ -68,14 +68,18 @@ public class DrawController extends JPanel {
 	public void paintComponent(Graphics page) 
 	{
 		super.paintComponent(page);
-		
+		// 나중에 생성한 걸로 그림 그릴 수 있음
+		// 드로우 모드를 판별하여 생성?
+		nDrawMode = painterManager.getLine();
+		nDrawMode = painterManager.getDot();
 		if(bDrag == true)
 		{
+			nDrawMode.DrawFigure(nowData, page);
 			switch(nowData.nDrawMode) {
-				case Constants.LINE:
+				/*case Constants.LINE:
 					nDrawMode = painterManager.getLine();
 					nDrawMode.DrawFigure(nowData, page);
-					break;
+					break;*/
 				case Constants.ERASER:
 					page.setColor(Color.white);
 					Graphics2D page3 = (Graphics2D) page;
@@ -102,15 +106,16 @@ public class DrawController extends JPanel {
 		
 		for(SimplePainterModel data:savedList)
 		{
+			nDrawMode.DrawFigure(data, page);
 			switch(data.nDrawMode) {
-				case Constants.DOT:
+				/*case Constants.DOT:
 					nDrawMode = painterManager.getDot();
 					nDrawMode.DrawFigure(data, page);
-					break;
-				case Constants.LINE:
+					break;*/
+				/*case Constants.LINE:
 					nDrawMode = painterManager.getLine();
 					nDrawMode.DrawFigure(data, page);
-					break;
+					break;*/
 				case Constants.ERASER:
 					page.setColor(Color.white);
 					Graphics2D page3 = (Graphics2D) page;
