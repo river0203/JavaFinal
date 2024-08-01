@@ -1,3 +1,4 @@
+import java.time.chrono.Era;
 import java.util.ArrayList;
 
 public class SimplePainterManager {
@@ -7,7 +8,13 @@ public class SimplePainterManager {
 	private SimplePainterModel painterModel;
 	private ArrayList<SimplePainterModel> savedModelList;
 	private DrawController paintController;
-	
+
+	private DrawMode Dot;
+	private DrawMode Line;
+	private DrawMode Oval;
+	private DrawMode Rect;
+	private DrawMode Eraser;
+
 	private SimplePainterManager()
 	{
 		
@@ -44,5 +51,34 @@ public class SimplePainterManager {
 	{
 		return savedModelList;
 	}
-	
+
+	public DrawMode getDot()
+	{
+		Dot = new Dot();
+		return Dot;
+	}
+
+	public DrawMode getLine()
+	{
+		Line = new Line();
+		return Line;
+	}
+
+	public DrawMode getOval()
+	{
+		Oval = new Oval();
+		return Oval;
+	}
+
+	public DrawMode getRect()
+	{
+		Rect = new Rect();
+		return Rect;
+	}
+
+	public DrawMode getEraser()
+	{
+		Eraser = new Eraser();
+		return Eraser;
+	}
 }
