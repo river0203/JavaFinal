@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.event.*;
 
+// view에서 버튼 값을 넘겨줘서 처리하는 것이 아닌
+/// 버튼 누른 곳에서 바로 처리하는 것은 어떨까
+/// switch를 없애려면 어떻게 해야하는가
+
 public class DrawController extends JPanel {
 
 	private SimplePainterModel nowData;
@@ -21,7 +25,6 @@ public class DrawController extends JPanel {
 		drawL = new DrawListener();
 		
 		setBackground(Color.white);
-		
 		addMouseListener(drawL);
 		addMouseMotionListener(drawL);
 		
@@ -70,27 +73,27 @@ public class DrawController extends JPanel {
 		{
 			switch(nowData.nDrawMode) {
 				case Constants.LINE:
-					nDrawMode = new Line();
+					nDrawMode = painterManager.getDot();
 					nDrawMode.DrawFigure(nowData, page);
 					break;
 				case Constants.ERASER:
 					page.setColor(Color.white);
 					Graphics2D page3 = (Graphics2D) page;
 					page3.setStroke(new BasicStroke(nowData.nSize));
-					nDrawMode = new Eraser();
+					nDrawMode = painterManager.getEraser();
 					nDrawMode.DrawFigure(nowData, page);
 					break;
 				case Constants.RECT:
 					Graphics2D page4 = (Graphics2D) page;
 					page4.setStroke(new BasicStroke(nowData.nSize));
-					nDrawMode = new Rect();
+					nDrawMode = painterManager.getRect();
 					nowData.bFill = view.getChkFill();
 					nDrawMode.DrawFigure(nowData, page4);
 					break;
 				case Constants.OVAL:
 					Graphics2D page5 = (Graphics2D) page;
 					page5.setStroke(new BasicStroke(nowData.nSize));
-					nDrawMode = new Oval();
+					nDrawMode = painterManager.getOval();
 					nowData.bFill = view.getChkFill();
 					nDrawMode.DrawFigure(nowData, page5);
 					break;
