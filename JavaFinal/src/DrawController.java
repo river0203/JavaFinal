@@ -175,31 +175,24 @@ public class DrawController extends JPanel {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
+			bDrag = true;
 			if(nowData.nDrawMode == Constants.LINE)
 			{
-				bDrag = true;
-				
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();		
 			}
 			else if(nowData.nDrawMode == Constants.RECT)
 			{
-				bDrag = true;
-				
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();
 			}
 			else if(nowData.nDrawMode == Constants.OVAL)
 			{
-				bDrag = true;
-				
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();
 			}
 			else if(nowData.nDrawMode == Constants.ERASER)
 			{
-				bDrag = true;
-				
 				nowData.ptOne = e.getPoint();
 				nowData.nSize = view.getTextSize();
 			}
@@ -209,39 +202,31 @@ public class DrawController extends JPanel {
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
+			bDrag = false;
 			if(nowData.nDrawMode == Constants.LINE)
 			{
-				bDrag = false;
-				
 				nowData.ptTwo = e.getPoint();
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
 			else if(nowData.nDrawMode == Constants.RECT)
 			{
-				bDrag = false;
-				
 				nowData.ptTwo = e.getPoint();
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
 			else if(nowData.nDrawMode == Constants.OVAL)
 			{
-				bDrag = false;
-				
 				nowData.ptTwo = e.getPoint();
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
 			else if(nowData.nDrawMode == Constants.ERASER)
 			{
-				bDrag = false;
-				
 				nowData.ptTwo = e.getPoint();
 				savedList.add(new SimplePainterModel(nowData));
 				repaint();
 			}
-			
 			view.printMessage();
 		}
 
