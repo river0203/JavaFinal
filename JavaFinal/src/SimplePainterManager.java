@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class SimplePainterManager {
 
 	private static SimplePainterManager instance;
-	private SimplePainterView painterView = new SimplePainterView();
-	private SimplePainterModel painterModel = new SimplePainterModel();
+	private SimplePainterView painterView;
+	private SimplePainterModel painterModel;
 	private ArrayList<SimplePainterModel> savedModelList;
 	private DrawController paintController;
 
@@ -31,11 +31,13 @@ public class SimplePainterManager {
 	
 	public SimplePainterView getPainterView()
 	{
+		painterView = new SimplePainterView();
 		return painterView;
 	}
 	
 	public SimplePainterModel getPainterModel()
 	{
+		painterModel = new SimplePainterModel();
 		return painterModel;
 	}
 	
@@ -64,7 +66,8 @@ public class SimplePainterManager {
 			case Constants.DOT:
 				return Dot;
 			default:
-				throw new IllegalArgumentException("Invalid draw mode");
+				System.out.print("no Draw Mode");
 		}
-	}
+        return null;
+    }
 }

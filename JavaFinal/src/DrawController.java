@@ -70,74 +70,14 @@ public class DrawController extends JPanel {
 		super.paintComponent(page);
 		// 나중에 생성한 걸로 그림 그릴 수 있음
 		// 드로우 모드를 판별하여 생성?
-		nDrawMode = painterManager.getLine();
-		nDrawMode = painterManager.getDot();
-		if(bDrag == true)
-		{
+		if(bDrag) {
 			nDrawMode.DrawFigure(nowData, page);
-			switch(nowData.nDrawMode) {
-				/*case Constants.LINE:
-					nDrawMode = painterManager.getLine();
-					nDrawMode.DrawFigure(nowData, page);
-					break;*/
-				case Constants.ERASER:
-					page.setColor(Color.white);
-					Graphics2D page3 = (Graphics2D) page;
-					page3.setStroke(new BasicStroke(nowData.nSize));
-					nDrawMode = painterManager.getEraser();
-					nDrawMode.DrawFigure(nowData, page);
-					break;
-				case Constants.RECT:
-					Graphics2D page4 = (Graphics2D) page;
-					page4.setStroke(new BasicStroke(nowData.nSize));
-					nDrawMode = painterManager.getRect();
-					nowData.bFill = view.getChkFill();
-					nDrawMode.DrawFigure(nowData, page4);
-					break;
-				case Constants.OVAL:
-					Graphics2D page5 = (Graphics2D) page;
-					page5.setStroke(new BasicStroke(nowData.nSize));
-					nDrawMode = painterManager.getOval();
-					nowData.bFill = view.getChkFill();
-					nDrawMode.DrawFigure(nowData, page5);
-					break;
-			}
 		}
-		
+
 		for(SimplePainterModel data:savedList)
 		{
-			nDrawMode.DrawFigure(data, page);
-			switch(data.nDrawMode) {
-				/*case Constants.DOT:
-					nDrawMode = painterManager.getDot();
-					nDrawMode.DrawFigure(data, page);
-					break;*/
-				/*case Constants.LINE:
-					nDrawMode = painterManager.getLine();
-					nDrawMode.DrawFigure(data, page);
-					break;*/
-				case Constants.ERASER:
-					page.setColor(Color.white);
-					Graphics2D page3 = (Graphics2D) page;
-					page3.setStroke(new BasicStroke(data.nSize));
-					nDrawMode = painterManager.getEraser();
-					nDrawMode.DrawFigure(data, page);
-					break;
-				case Constants.RECT:
-					Graphics2D page4 = (Graphics2D) page;
-					page4.setStroke(new BasicStroke(data.nSize));
-					nDrawMode = painterManager.getRect();
-					nowData.bFill = view.getChkFill();
-					nDrawMode.DrawFigure(data, page);
-					break;
-				case Constants.OVAL:
-					Graphics2D page5 = (Graphics2D) page;
-					page5.setStroke(new BasicStroke(data.nSize));
-					nDrawMode = painterManager.getOval();
-					nowData.bFill = view.getChkFill();
-					nDrawMode.DrawFigure(data, page);
-					break;
-			}
+			DrawMode drawMode = painterManager.getDrawMode(data.nDrawMode);
+			drawMode.DrawFigure(data, page);
 		}
 	}
 	
