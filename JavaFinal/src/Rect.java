@@ -7,18 +7,16 @@ public class Rect extends DrawMode{
 	@Override
 	public void DrawFigure(SimplePainterModel data, Graphics page) {
 		// TODO Auto-generated method stub
-		if(data.nDrawMode == Constants.RECT)
-		{
-			page.setColor(data.selectedColor);
+		Graphics2D g2 = (Graphics2D) page;
+		g2.setStroke(new BasicStroke(data.nSize));
 
-			if(data.bFill == true)
-			{
-				page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
-			}
-			else
-			{
-				page.drawRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
-			}
+		if(data.bFill == true)
+		{
+			page.fillRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
+		}
+		else
+		{
+			page.drawRect(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 		}
 	}
 }

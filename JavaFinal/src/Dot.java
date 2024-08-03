@@ -1,15 +1,14 @@
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Dot extends DrawMode {
 
 	@Override
 	public void DrawFigure(SimplePainterModel data, Graphics page) {
 		// TODO Auto-generated method stub
-		if(data.nDrawMode == Constants.DOT)
-		{
-			page.setColor(data.selectedColor);
-			page.fillOval(data.ptOne.x-data.nSize/2, data.ptOne.y-data.nSize/2, data.nSize, data.nSize);
-		}
+		page.setColor(data.selectedColor);
+		Graphics2D g2 = (Graphics2D) page;
+		g2.setStroke(new BasicStroke(data.nSize));
+		page.drawLine(data.ptOne.x, data.ptOne.y, data.ptOne.x, data.ptOne.y);
 	}
 
 }
