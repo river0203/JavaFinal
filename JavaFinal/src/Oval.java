@@ -9,14 +9,7 @@ public class Oval extends DrawMode{
 		g2.setStroke(new BasicStroke(data.nSize));
 		page.setColor(data.selectedColor);
 
-		if(data.bFill == true)
-		{
-			page.fillOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
-		}
-		else
-		{
-			page.drawOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
-		}
+		page.drawOval(data.ptOne.x, data.ptOne.y, data.ptTwo.x - data.ptOne.x, data.ptTwo.y - data.ptOne.y);
 	}
 
 }

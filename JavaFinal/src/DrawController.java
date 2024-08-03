@@ -68,15 +68,15 @@ public class DrawController extends JPanel {
 	public void paintComponent(Graphics page) 
 	{
 		super.paintComponent(page);
+		nowData.bFill = view.getChkFill();
 
 		if(bDrag) {
-			
 			nDrawMode.DrawFigure(nowData, page);
 		}
 
 		for(SimplePainterModel data:savedList)
 		{
-			DrawMode drawMode = painterManager.getDrawMode(data.nDrawMode);
+			DrawMode drawMode = painterManager.getDrawMode(data.nDrawMode, data.bFill);
 			drawMode.DrawFigure(data, page);
 		}
 	}

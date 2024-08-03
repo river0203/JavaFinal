@@ -14,6 +14,8 @@ public class SimplePainterManager {
 	private DrawMode Oval = new Oval();
 	private DrawMode Rect = new Rect();
 	private DrawMode Eraser = new Eraser();
+	private DrawMode FillOval = new FillOval();
+	private DrawMode FillRect = new FillRect();
 
 	private SimplePainterManager()
 	{
@@ -52,7 +54,7 @@ public class SimplePainterManager {
 		return savedModelList;
 	}
 
-	public DrawMode getDrawMode(int mode)
+	public DrawMode getDrawMode(int mode, boolean checkFill)
 	{
 		switch (mode) {
 			case Constants.LINE:
@@ -60,8 +62,16 @@ public class SimplePainterManager {
 			case Constants.ERASER:
 				return Eraser;
 			case Constants.RECT:
+				if(checkFill)
+				{
+					return FillRect;
+				}
 				return Rect;
 			case Constants.OVAL:
+				if(checkFill)
+				{
+					return FillOval;
+				}
 				return Oval;
 			case Constants.DOT:
 				return Dot;
