@@ -68,9 +68,9 @@ public class DrawController extends JPanel {
 	public void paintComponent(Graphics page) 
 	{
 		super.paintComponent(page);
-		// 나중에 생성한 걸로 그림 그릴 수 있음
-		// 드로우 모드를 판별하여 생성?
+
 		if(bDrag) {
+			
 			nDrawMode.DrawFigure(nowData, page);
 		}
 

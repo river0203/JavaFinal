@@ -9,6 +9,7 @@ public class Rect extends DrawMode{
 		// TODO Auto-generated method stub
 		Graphics2D g2 = (Graphics2D) page;
 		g2.setStroke(new BasicStroke(data.nSize));
+		page.setColor(data.selectedColor);
 
 		if(data.bFill == true)
 		{
