@@ -4,16 +4,16 @@ import java.util.ArrayList;
 public class SimplePainterManager {
 
 	private static SimplePainterManager instance;
-	private SimplePainterView painterView;
-	private SimplePainterModel painterModel;
+	private SimplePainterView painterView = new SimplePainterView();
+	private SimplePainterModel painterModel = new SimplePainterModel();
 	private ArrayList<SimplePainterModel> savedModelList;
 	private DrawController paintController;
 
-	private DrawMode Dot;
-	private DrawMode Line;
-	private DrawMode Oval;
-	private DrawMode Rect;
-	private DrawMode Eraser;
+	private DrawMode Dot = new Dot();
+	private DrawMode Line = new Line();;
+	private DrawMode Oval = new Oval();
+	private DrawMode Rect = new Rect();
+	private DrawMode Eraser = new Eraser();
 
 	private SimplePainterManager()
 	{
@@ -31,13 +31,11 @@ public class SimplePainterManager {
 	
 	public SimplePainterView getPainterView()
 	{
-		painterView = new SimplePainterView();
 		return painterView;
 	}
 	
 	public SimplePainterModel getPainterModel()
 	{
-		painterModel = new SimplePainterModel();
 		return painterModel;
 	}
 	
@@ -52,33 +50,21 @@ public class SimplePainterManager {
 		return savedModelList;
 	}
 
-	public DrawMode getDot()
+	public DrawMode getDrawMode(int mode)
 	{
-		Dot = new Dot();
-		return Dot;
-	}
-
-	public DrawMode getLine()
-	{
-		Line = new Line();
-		return Line;
-	}
-
-	public DrawMode getOval()
-	{
-		Oval = new Oval();
-		return Oval;
-	}
-
-	public DrawMode getRect()
-	{
-		Rect = new Rect();
-		return Rect;
-	}
-
-	public DrawMode getEraser()
-	{
-		Eraser = new Eraser();
-		return Eraser;
+		switch (mode) {
+			case Constants.LINE:
+				return Line;
+			case Constants.ERASER:
+				return Eraser;
+			case Constants.RECT:
+				return Rect;
+			case Constants.OVAL:
+				return Oval;
+			case Constants.DOT:
+				return Dot;
+			default:
+				throw new IllegalArgumentException("Invalid draw mode");
+		}
 	}
 }
