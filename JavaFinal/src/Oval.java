@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Oval extends DrawMode{
 
