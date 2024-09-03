@@ -8,6 +8,6 @@ Singleton = Singleton 패턴
 Strategy = Strategy 패턴   
 SingleAndStr = Singleton + Strategy 패턴   
 
-### 개발
+### 프로필
 호서대 컴퓨터 공학과
 23학번 이승빈 aspp3666@gmail.com
